@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: jdk21-occurs-oom
+
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 10MB
+      max-file-size: 10MB
+      # FIXME : change to path
+      location: /Users/2dongyeop/Developments/jdk21-occurs-oom/images
+
+logging:
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%clr(%-5p)][%thread][%clr(%logger{20}.%method){cyan}] - %msg%n"
+    file: "[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%-5p][%thread][%logger{20}.%method] - %msg%n"
+
+  file:
+    name: /logs/back-end/local/spring.log
+
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 30
+      file-name-pattern: "${LOG_FILE}%d{yyyy-MM-dd}-%i.log"
