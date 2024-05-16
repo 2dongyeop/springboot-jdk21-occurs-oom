@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.dongvelop</groupId>
     <artifactId>jdk21-occurs-oom</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>jdk21-occurs-oom</name>
     <description>jdk21-occurs-oom</description>
     <properties>
