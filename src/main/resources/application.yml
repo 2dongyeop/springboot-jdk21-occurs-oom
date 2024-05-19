@@ -5,10 +5,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-#      max-request-size: 100MB
-      max-file-size: 12MB
-      # FIXME : change to path
-#      location: /Users/2dongyeop/Developments/jdk21-occurs-oom/samples
+      max-request-size: 20MB
+      max-file-size: 20MB
 
 logging:
   pattern:
@@ -16,7 +14,7 @@ logging:
     file: "[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%-5p][%thread][%logger{20}.%method] - %msg%n"
 
   file:
-    name: /logs/back-end/local/spring.log
+    name: ./logs/back-end/local/spring.log
 
   logback:
     rollingpolicy:

@@ -27,8 +27,11 @@ public class FileUtil {
     public File convertToFileDangerousInJDK21(final MultipartFile multipartFile) {
         final File convertedFile = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 
-        try (OutputStream os = new FileOutputStream(convertedFile)) {
-            os.write(multipartFile.getBytes());
+//        try (OutputStream os = new FileOutputStream(convertedFile)) {
+        try  {
+            byte[] bytes = multipartFile.getBytes();
+            log.info("bytes length[{}]", bytes.length);
+//            os.write(bytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

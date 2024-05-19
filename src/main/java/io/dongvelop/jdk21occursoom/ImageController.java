@@ -28,35 +28,40 @@ public class ImageController {
     private final static String SAMPLE_VIDEO_PATH = "samples/smaple.mp4";
 
     /**
-     * 파일 저장 요청 API <br/>
-     * images/sample.jpg를 요청시 사용. (9.8MB) <br/>
+     * JDK 17과 달리, 21에서 Out of Memory Error를 유발하는 getBytes() 메서드 사용 예제
      *
-     * @return : 파일이 저장된 경로 + 이름
+     * @param multipartFile : 저장할 파일
+     * @return : empty response
      */
-    @PostMapping("/images")
-    public ResponseEntity<String> saveImage(final MultipartFile file) {
-        logMultipartFIle(file);
-        return ResponseEntity.ok(imageService.saveImage(file, FileStorageType.LOCAL));
-    }
-
     @PostMapping("/videos/danger")
     public ResponseEntity<String> saveVideoDangerCode(final MultipartFile multipartFile) {
         logMultipartFIle(multipartFile);
-        File file = FileUtil.convertToFileDangerousInJDK21(multipartFile);
+        final File file = FileUtil.convertToFileDangerousInJDK21(multipartFile);
+        log.info("saved file name[{}]", file.getName());
 
-        // TODO : save video logic
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * JDK 21에서 Out of Memory Error를 방지하기 위한 대안 예제
+     *
+     * @param multipartFile : 저장할 예제
+     * @return : empty response
+     */
     @PostMapping("/videos/safe")
     public ResponseEntity<String> saveVideoSafeCode(final MultipartFile multipartFile) {
         logMultipartFIle(multipartFile);
-        File file = FileUtil.convertToFileSafeInJDK21(multipartFile);
+        final File file = FileUtil.convertToFileSafeInJDK21(multipartFile);
+        log.info("saved file name[{}]", file.getName());
 
-        // TODO : save video logic
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * 파일 로깅 메서드
+     *
+     * @param multipartFile : 로깅할 파일
+     */
     private void logMultipartFIle(MultipartFile multipartFile) {
         log.info("name[{}]", multipartFile.getName());
         log.info("origin name[{}]", multipartFile.getOriginalFilename());
