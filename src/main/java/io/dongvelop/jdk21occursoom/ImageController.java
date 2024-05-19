@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * @author 이동엽(Lee Dongyeop)
@@ -31,17 +35,13 @@ public class ImageController {
      */
     @PostMapping("/images")
     public ResponseEntity<String> saveImage(final MultipartFile file) {
-        if (file == null || file.isEmpty())
-            return ResponseEntity.badRequest().body("""
-                    샘플 파일을 확인하세요. 크기가 10MB 이하여야 합니다.
-                    """);
-
+        logMultipartFIle(file);
         return ResponseEntity.ok(imageService.saveImage(file, FileStorageType.LOCAL));
     }
 
     @PostMapping("/videos/danger")
     public ResponseEntity<String> saveVideoDangerCode(final MultipartFile multipartFile) {
-        validateFileSize(multipartFile);
+        logMultipartFIle(multipartFile);
         File file = FileUtil.convertToFileDangerousInJDK21(multipartFile);
 
         // TODO : save video logic
@@ -50,18 +50,16 @@ public class ImageController {
 
     @PostMapping("/videos/safe")
     public ResponseEntity<String> saveVideoSafeCode(final MultipartFile multipartFile) {
-        validateFileSize(multipartFile);
+        logMultipartFIle(multipartFile);
         File file = FileUtil.convertToFileSafeInJDK21(multipartFile);
 
         // TODO : save video logic
         return ResponseEntity.ok().build();
     }
 
-
-    private void validateFileSize(final MultipartFile file) {
-        if (file == null || file.isEmpty())
-            throw new IllegalArgumentException("file size must less than 10MB");
+    private void logMultipartFIle(MultipartFile multipartFile) {
+        log.info("name[{}]", multipartFile.getName());
+        log.info("origin name[{}]", multipartFile.getOriginalFilename());
+        log.info("size[{}]", multipartFile.getSize());
     }
-
-
 }

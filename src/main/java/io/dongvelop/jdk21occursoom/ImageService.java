@@ -20,8 +20,8 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-    @Value("${spring.servlet.multipart.location}")
-    private String LOCAL_STORAGE_PATH;
+//    @Value("${spring.servlet.multipart.location}")
+    private String LOCAL_STORAGE_PATH = "/Users/2dongyeop/Developments/jdk21-occurs-oom/samples";
 
     /**
      * 파일 저장 메서드

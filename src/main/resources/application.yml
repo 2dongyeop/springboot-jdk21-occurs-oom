@@ -5,10 +5,10 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-request-size: 10MB
-      max-file-size: 10MB
+#      max-request-size: 100MB
+      max-file-size: 12MB
       # FIXME : change to path
-      location: /Users/2dongyeop/Developments/jdk21-occurs-oom/samples
+#      location: /Users/2dongyeop/Developments/jdk21-occurs-oom/samples
 
 logging:
   pattern:
