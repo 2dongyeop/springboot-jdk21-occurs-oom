@@ -1,45 +1,36 @@
 # springboot-jdk21-occurs-oom
-Out of Memory when Using JDK 21(Multipartfile)
 
 ## *Overview.*
-JDK 21에서 MultipartFile 클래스의 getBytes() API 호출 시, 발생하는 Out of Memory Error를 재현합니다.
+>JDK 21를 사용할 경우, `MultipartFile.getBytes()` 메서드 호출시 아래 사진과 같이
+Direct Buffer Memory가 부족하여 `Out of Memory Error`가 발생하는 경우가 있습니다.
+>
+>*다만, 동일한 소스코드로 JDK 17을 사용할 경우에는 발생하지 않습니다.*
+> 
+>따라서 두 JDK 버전 간의 Direct Buffer Memory 사용량을 비교하는 글 입니다. 
+> 
+>자세한 내용은 [노션](https://www.notion.so/leedongyeop/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d#e9d4048dba91439ebe9820578bf9ac3b)에서 확인하실 수 있습니다.
 
-모든 내용 정리는 [노션(첨부링크)](https://www.notion.so/leedongyeop/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d#e9d4048dba91439ebe9820578bf9ac3b)에서 확인하실 수 있습니다.
+![direct-buffer-memory.png](result-mov%2Fdirect-buffer-memory.png)
 
 <br/>
 
-## *Quick Start.*
+## *Summary.*
+### JDK 17
+MultipartFile.getBytes() 호출 시, 200건의 요청이 정상 처리
+![jdk17.gif](result-mov%2Fjdk17.gif)
 
-### 1. Git Clone
-```bash
-# ssh
-$ git clone git@github.com:2dongyeop/springboot-jdk21-occurs-oom.git
+### JDK 21
+MultipartFile.getBytes() 호출 시, Out of Memory가 발생하는 영상
+![jdk21.gif](result-mov%2Fjdk21.gif)
 
-# https
-$ git clone https://github.com/2dongyeop/springboot-jdk21-occurs-oom.git
-```
+<br/>
 
-### 2. Open in IDE (IntelliJ ... )
-Fix below location (file save location)
-```yaml
-# src/main/resources/application.yml
-spring:
-  application:
-    name: jdk21-occurs-oom
+## *Test Flow.*
+모든 실행 결과 및 메모리 분석은 아래 순서로 진행합니다.
 
-  servlet:
-    multipart:
-      enabled: true
-      max-request-size: 10MB
-      max-file-size: 10MB
-      # FIXME : change to path
-      location: /Users/2dongyeop/Developments/jdk21-occurs-oom/images
-```
-
-### 3. Request With Apache Jmeter
-```
-Content-Type : multipart/form-data
-Request Url : localhost:8080/images
-HTTP Method : POST
-Using Images : images/sample.jpg (Image size should be less than 10MB) 
-```
+1. JDK 버전 선택 후 JVM 애플리케이션 실행
+2. VisualVM Monitor 탭에서 그래프 파악
+3. jcmd baseline 지정
+4. Apache Jmeter로 스레드그룹 요청 실행
+5. VisualVM Monitor 탭에서 그래프 비교
+6. jcmd Memory Diff 비교
