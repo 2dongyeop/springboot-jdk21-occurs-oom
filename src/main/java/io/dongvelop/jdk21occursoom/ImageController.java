@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Objects;
 
 /**
  * @author 이동엽(Lee Dongyeop)
@@ -36,7 +32,7 @@ public class ImageController {
     @PostMapping("/videos/danger")
     public ResponseEntity<String> saveVideoDangerCode(final MultipartFile multipartFile) {
         logMultipartFIle(multipartFile);
-        final File file = FileUtil.convertToFileDangerousInJDK21(multipartFile);
+        final File file = FileUtil.convertToFile(multipartFile);
         log.info("saved file name[{}]", file.getName());
 
         return ResponseEntity.ok().build();

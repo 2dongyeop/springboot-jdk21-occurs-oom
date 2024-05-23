@@ -24,14 +24,12 @@ public class FileUtil {
      * @param multipartFile : 변환할 MultipartFile
      * @return : 변환된 File
      */
-    public File convertToFileDangerousInJDK21(final MultipartFile multipartFile) {
+    public File convertToFile(final MultipartFile multipartFile) {
         final File convertedFile = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 
-//        try (OutputStream os = new FileOutputStream(convertedFile)) {
         try  {
             byte[] bytes = multipartFile.getBytes();
             log.info("bytes length[{}]", bytes.length);
-//            os.write(bytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
