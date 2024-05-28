@@ -11,26 +11,19 @@ Direct Buffer Memory가 부족하여 `Out of Memory Error`가 발생하는 경�
 >자세한 내용은 [노션](https://www.notion.so/leedongyeop/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d#e9d4048dba91439ebe9820578bf9ac3b)에서 확인하실 수 있습니다.
 
 ![direct-buffer-memory.png](result-mov%2Fdirect-buffer-memory.png)
+- [junhyunny 님의 블로그 글](https://junhyunny.github.io/java/jvm/spring-boot/get-bytes-method-of-multipart-file-in-java21-cause-oome/)을 참고했으며, 원본 글로부터 아래 내용을 첨언하였습니다.
+    - [Apache Jmeter 사용 방법](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
+    - [VisualVM 사용 방법](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
+    - [jcmd 사용 방법](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
+    - [Spring Boot 실행 시, JVM Option 설명](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
+    - InputStream 디폴트 버퍼 크기 변경으로 인한 내용 최신화 
+      - (8192Byte → 16384Byte)
 
 <br/>
 
 ## *Summary.*
-### JDK 17
-MultipartFile.getBytes() 호출 시, 200건의 요청이 정상 처리
-![jdk17.gif](result-mov%2Fjdk17.gif)
+### JDK 17 : Out of Memory Error 발생하지 않음
+![jdk17-new.gif](result-mov%2Fjdk17-new.gif)
 
-### JDK 21
-MultipartFile.getBytes() 호출 시, Out of Memory가 발생하는 영상
-![jdk21.gif](result-mov%2Fjdk21.gif)
-
-<br/>
-
-## *Test Flow.*
-모든 실행 결과 및 메모리 분석은 아래 순서로 진행합니다.
-
-1. JDK 버전 선택 후 JVM 애플리케이션 실행
-2. VisualVM Monitor 탭에서 그래프 파악
-3. jcmd baseline 지정
-4. Apache Jmeter로 스레드그룹 요청 실행
-5. VisualVM Monitor 탭에서 그래프 비교
-6. jcmd Memory Diff 비교
+### JDK 21 : Out of Memory Error 발생
+![jdk21-new.gif](result-mov%2Fjdk21-new.gif)
