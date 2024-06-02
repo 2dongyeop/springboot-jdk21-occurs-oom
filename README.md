@@ -10,7 +10,7 @@ Direct Buffer Memory가 부족하여 `Out of Memory Error`가 발생하는 경�
 > 
 >자세한 내용은 [노션](https://www.notion.so/leedongyeop/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d#e9d4048dba91439ebe9820578bf9ac3b)에서 확인하실 수 있습니다.
 
-![direct-buffer-memory.png](result-mov%2Fdirect-buffer-memory.png)
+![direct-buffer-memory.png](movies%2Fdirect-buffer-memory.png)
 - [junhyunny 님의 블로그 글](https://junhyunny.github.io/java/jvm/spring-boot/get-bytes-method-of-multipart-file-in-java21-cause-oome/)을 참고했으며, 원본 글로부터 아래 내용을 첨언하였습니다.
     - [Apache Jmeter 사용 방법](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
     - [VisualVM 사용 방법](https://www.notion.so/Out-of-Memory-when-Using-JDK-21-e3dad8ab534247f2922002118803789d?pvs=21)
@@ -23,7 +23,7 @@ Direct Buffer Memory가 부족하여 `Out of Memory Error`가 발생하는 경�
 
 ## *Summary.*
 ### JDK 17 : Out of Memory Error 발생하지 않음
-![jdk17-new.gif](result-mov%2Fjdk17-new.gif)
+![jdk17-new.gif](movies%2Fjdk17-new.gif)
 
 ### JDK 21 : Out of Memory Error 발생
-![jdk21-new.gif](result-mov%2Fjdk21-new.gif)
+![jdk21-new.gif](movies%2Fjdk21-new.gif)
