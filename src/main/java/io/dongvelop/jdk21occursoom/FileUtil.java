@@ -28,7 +28,7 @@ public class FileUtil {
         final File convertedFile = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 
         try  {
-            byte[] bytes = multipartFile.transferTo();getBytes();
+            byte[] bytes = multipartFile.getBytes();
             log.info("bytes length[{}]", bytes.length);
         } catch (IOException e) {
             throw new RuntimeException(e);
