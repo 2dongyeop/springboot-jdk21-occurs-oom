@@ -29,9 +29,9 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="JDK 21 사용 시, 이미지 전송 요청" enabled="true">
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/2dongyeop/Developments/jdk21-occurs-oom/samples/sample.mp4" elementType="HTTPFileArg">
+              <elementProp name="/Users/2dongyeop/Developments/jdk21-occurs-oom/movies/sample.mp4" elementType="HTTPFileArg">
                 <stringProp name="File.mimetype">multipart/form-data</stringProp>
-                <stringProp name="File.path">/Users/2dongyeop/Developments/jdk21-occurs-oom/samples/sample.mp4</stringProp>
+                <stringProp name="File.path">/Users/2dongyeop/Developments/jdk21-occurs-oom/movies/sample.mp4</stringProp>
                 <stringProp name="File.paramname">multipartFile</stringProp>
               </elementProp>
             </collectionProp>
